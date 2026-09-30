@@ -87,12 +87,16 @@ Community members.
 (English, Urdu; later Shina, Burushaski). Title, body, scenario question /
 answer / "what can you do", image or video link.
 
-**`quiz_questions`** and **`quiz_options`** — simple multiple-choice quizzes.
+**Quizzes** — *(as built, Phase 3)* stored as a checked list of questions inside
+each language version of a quiz item, instead of separate tables.
 Quiz scores are kept **on the phone only**; we don't collect them.
 
-**`campaigns`** — "Don't Let Fear Silence You", "No Means No", etc. Each has
-translations and shareable images, with the same review and publish rules as
-content.
+**Campaigns** — "Don't Let Fear Silence You", "No Means No", etc. *(As built:
+a content type, so they follow exactly the same review and publish rules.)*
+Each language has its own shareable poster.
+
+**`app_settings`** *(added in Phase 3)* — small switches, e.g.
+`show_sample_content` (true only on test sites; must be false at launch).
 
 ### E. Reports (Report)
 

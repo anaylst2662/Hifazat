@@ -15,11 +15,13 @@
  * (IndexedDB), never in this cache.
  */
 
-const VERSION = "v3";
+const VERSION = "v4";
 const STATIC_CACHE = `hifazat-static-${VERSION}`;
 const PAGES_CACHE = `hifazat-pages-${VERSION}`;
 
-// Pages saved as soon as the helper is installed (both languages).
+// Pages saved as soon as the helper is installed (both languages). The full,
+// up-to-date list (including core learning guides) comes from /offline-pages.json;
+// this short list is only used if that cannot be loaded.
 const CORE_PAGES = ["/en", "/ur", "/en/now", "/ur/now", "/en/plan", "/ur/plan", "/en/tips", "/ur/tips"];
 
 // Only these pages may ever be saved: the public site in a supported language.
@@ -78,7 +80,12 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (url.pathname.startsWith("/icons/") || url.pathname.endsWith(".webmanifest")) {
+  if (
+    url.pathname.startsWith("/icons/") ||
+    url.pathname.startsWith("/samples/") ||
+    url.pathname.startsWith("/_next/image") ||
+    url.pathname.endsWith(".webmanifest")
+  ) {
     event.respondWith(cacheFirst(request));
   }
 });
@@ -130,11 +137,23 @@ async function lastLanguage(cache) {
   return lang === "ur" ? "ur" : "en";
 }
 
+async function corePageList() {
+  try {
+    const response = await fetch("/offline-pages.json", { cache: "no-store" });
+    const { pages } = await response.json();
+    const safe = pages.filter((p) => typeof p === "string" && PUBLIC_PAGE.test(p));
+    return safe.length ? safe : CORE_PAGES;
+  } catch {
+    return CORE_PAGES;
+  }
+}
+
 async function saveCorePages() {
   const pages = await caches.open(PAGES_CACHE);
   const statics = await caches.open(STATIC_CACHE);
+  const list = await corePageList();
   await Promise.all(
-    CORE_PAGES.map(async (path) => {
+    list.map(async (path) => {
       try {
         const response = await fetch(path, { cache: "no-store" });
         if (!response.ok) return;

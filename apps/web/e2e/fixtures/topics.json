@@ -1,0 +1,50 @@
+[
+ {
+  "id": "consent",
+  "name_en": "Consent",
+  "name_ur": "رضامندی",
+  "icon": "handshake"
+ },
+ {
+  "id": "boundaries",
+  "name_en": "Boundaries",
+  "name_ur": "حدود",
+  "icon": "shield"
+ },
+ {
+  "id": "harassment",
+  "name_en": "Harassment",
+  "name_ur": "ہراسانی",
+  "icon": "megaphone-off"
+ },
+ {
+  "id": "sexual-violence",
+  "name_en": "Sexual violence",
+  "name_ur": "جنسی تشدد",
+  "icon": "heart-crack"
+ },
+ {
+  "id": "domestic",
+  "name_en": "Domestic violence",
+  "name_ur": "گھریلو تشدد",
+  "icon": "house"
+ },
+ {
+  "id": "stalking",
+  "name_en": "Stalking",
+  "name_ur": "پیچھا کرنا",
+  "icon": "footprints"
+ },
+ {
+  "id": "online",
+  "name_en": "Online safety",
+  "name_ur": "آن لائن تحفظ",
+  "icon": "smartphone"
+ },
+ {
+  "id": "child-safety",
+  "name_en": "Child safety",
+  "name_ur": "بچوں کا تحفظ",
+  "icon": "baby"
+ }
+]

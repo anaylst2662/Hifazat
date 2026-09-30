@@ -138,14 +138,14 @@ test.describe("Offline", () => {
     await expect
       .poll(() =>
         page.evaluate(async () => {
-          const cache = await caches.open("hifazat-pages-v3");
+          const cache = await caches.open("hifazat-pages-v4");
           return (await cache.keys()).length;
         }),
       )
       .toBeGreaterThanOrEqual(8);
 
     const saved = await page.evaluate(async () => {
-      const cache = await caches.open("hifazat-pages-v3");
+      const cache = await caches.open("hifazat-pages-v4");
       return (await cache.keys()).map((r) => new URL(r.url).pathname);
     });
     for (const path of saved.filter((p) => !p.startsWith("/__hifazat"))) {
@@ -167,4 +167,28 @@ test.describe("Offline", () => {
 test("the test version asks search engines not to list it", async ({ page }) => {
   await page.goto("/en");
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+});
+
+test.describe("Quick Exit on a slow connection", () => {
+  test("works before the app's code has loaded", async ({ page }) => {
+    await fakeOtherSites(page);
+    // Hold back all of the app's JavaScript, like a very slow phone connection.
+    await page.route("**/_next/static/**/*.js", () => new Promise(() => {}));
+    await page.goto(NEUTRAL_START);
+    await page.goto("/en/now", { waitUntil: "domcontentloaded" });
+    await page.getByTestId("quick-exit").click();
+    await expect(page).toHaveURL(/google\.com\/search\?q=weather/);
+    await page.goBack();
+    await expect(page).toHaveURL(NEUTRAL_START);
+  });
+
+  test("Esc three times works before the app's code has loaded", async ({ page }) => {
+    await fakeOtherSites(page);
+    await page.route("**/_next/static/**/*.js", () => new Promise(() => {}));
+    await page.goto("/ur/form", { waitUntil: "domcontentloaded" });
+    await page.keyboard.press("Escape");
+    await page.keyboard.press("Escape");
+    await page.keyboard.press("Escape");
+    await expect(page).toHaveURL(/google\.com\/search\?q=weather/);
+  });
 });

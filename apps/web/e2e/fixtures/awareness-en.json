@@ -1,0 +1,293 @@
+[
+ {
+  "id": "6e35c712-f421-44e6-971a-a38e29626cf5",
+  "code": "smp001",
+  "type": "article",
+  "topic_id": "consent",
+  "audience_ids": [
+   "community",
+   "friends",
+   "men",
+   "parents",
+   "teachers",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "en",
+  "title": "SAMPLE: What is consent?",
+  "summary": "Consent means a clear, free “yes”. It can be changed at any time.",
+  "body": "Consent means agreeing to something freely, without pressure, fear or threats.\n\n- Consent must be given freely. Silence or fear is not a “yes”.\n- Consent can be taken back at any time.\n- Agreeing to one thing does not mean agreeing to everything.\n- A person who is asleep, drunk or very young cannot give consent.\n\nIf someone did something to you without your consent, it is not your fault. The responsibility belongs to the person who did it.",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "6fdc6cd6-a702-4819-9959-5a630ca06abf",
+  "code": "smp007",
+  "type": "quiz",
+  "topic_id": "consent",
+  "audience_ids": [
+   "friends",
+   "men",
+   "teachers",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": false,
+  "lang": "en",
+  "title": "SAMPLE: Quick quiz: consent and boundaries",
+  "summary": "Three short questions. Your answers stay on your phone.",
+  "body": null,
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": [
+   {
+    "prompt": "Someone says “yes” because they are afraid. Is that consent?",
+    "correct": 1,
+    "options": [
+     "Yes",
+     "No"
+    ],
+    "explanation": "Consent must be free. A “yes” given out of fear is not consent."
+   },
+   {
+    "prompt": "Can a person change their mind after saying yes?",
+    "correct": 0,
+    "options": [
+     "Yes, at any time",
+     "No, a yes is final"
+    ],
+    "explanation": "Consent can be taken back at any time."
+   },
+   {
+    "prompt": "A friend tells you something bad happened to them. What helps most?",
+    "correct": 1,
+    "options": [
+     "Asking what they did wrong",
+     "Listening and believing them",
+     "Telling others straight away"
+    ],
+    "explanation": "Listening without blame helps. Let them decide what happens next."
+   }
+  ],
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "631f1f9e-c747-4e77-babf-368bb43215fe",
+  "code": "smp010",
+  "type": "campaign",
+  "topic_id": "consent",
+  "audience_ids": [
+   "community",
+   "friends",
+   "men",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": false,
+  "lang": "en",
+  "title": "SAMPLE: No Means No",
+  "summary": "Respect boundaries. Every time.",
+  "body": "A “no” is a complete answer. It does not need a reason, and it deserves respect.",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": "/samples/campaign-smp010-en.jpg",
+  "image_alt": "Poster with the words: No Means No. Respect boundaries. Every time.",
+  "video_url": null,
+  "share_text": "No Means No. Respect boundaries. Every time."
+ },
+ {
+  "id": "6110a709-bf96-4062-a11a-d938c4dcbf0f",
+  "code": "smp002",
+  "type": "article",
+  "topic_id": "harassment",
+  "audience_ids": [
+   "community",
+   "men",
+   "teachers",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "en",
+  "title": "SAMPLE: What is harassment?",
+  "summary": "Unwanted words or actions that make you feel unsafe, scared or humiliated.",
+  "body": "Harassment is unwanted behaviour that makes a person feel unsafe, scared or humiliated. It can happen on the street, at school, at work, at home or online.\n\n- Comments about someone’s body or looks\n- Following someone, or staring to scare them\n- Touching without permission\n- Messages, calls or photos that are not wanted\n\nHarassment is never the fault of the person it happens to. It does not depend on what they wear or where they go.",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "1f307794-cb8d-42ea-b863-dffc1d7a6329",
+  "code": "smp003",
+  "type": "scenario",
+  "topic_id": "harassment",
+  "audience_ids": [
+   "friends",
+   "parents",
+   "teachers",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "en",
+  "title": "SAMPLE: Is this harassment? On the way to school",
+  "summary": "A short situation, and what you can do.",
+  "body": null,
+  "scenario_situation": "Every day, a group of boys waits near the bridge and makes comments about a girl as she walks to school. Yesterday they followed her part of the way.",
+  "scenario_answer": "Yes. Repeated unwanted comments and following someone are harassment. It is not her fault, and it is not about what she wears or how she walks.",
+  "scenario_actions": "- If you can, walk with a friend or family member.\n- Tell an adult you trust, or a teacher.\n- Write down the dates, times and places. This can help later.\n- You can find verified support in “I Need Help”.",
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "e3abb400-eeb1-4b9b-8a7f-0f7059488ab3",
+  "code": "smp009",
+  "type": "campaign",
+  "topic_id": "harassment",
+  "audience_ids": [
+   "community",
+   "friends",
+   "men",
+   "parents",
+   "teachers",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": false,
+  "lang": "en",
+  "title": "SAMPLE: Don't Let Fear Silence You",
+  "summary": "Learn. Prevent. Protect. Report. Support.",
+  "body": "Nobody should have to stay silent because of fear. Share this message to let people know that support exists.",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": "/samples/campaign-smp009-en.jpg",
+  "image_alt": "Poster with the words: Don't Let Fear Silence You. Learn. Prevent. Protect. Report. Support.",
+  "video_url": null,
+  "share_text": "Don't Let Fear Silence You. Learn. Prevent. Protect. Report. Support."
+ },
+ {
+  "id": "ec05f798-2ba4-44f1-96d4-25aad0f0f286",
+  "code": "smp005",
+  "type": "faq",
+  "topic_id": "domestic",
+  "audience_ids": [
+   "community",
+   "friends",
+   "men",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "en",
+  "title": "SAMPLE: Is it abuse if there is no hitting?",
+  "summary": "Abuse is not only physical.",
+  "body": "Yes, it can be. Abuse is not only hitting. It can also be:\n\n- Controlling who you see, where you go or what you wear\n- Taking your money or documents\n- Threats, constant insults or making you afraid\n- Forcing any sexual act, including within marriage\n\nYou deserve to feel safe at home. Support is available, and you can decide what to do next.",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "e84760e4-4bdb-40f9-a20f-ea46482238c9",
+  "code": "smp006",
+  "type": "faq",
+  "topic_id": "stalking",
+  "audience_ids": [
+   "friends",
+   "men",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": false,
+  "lang": "en",
+  "title": "SAMPLE: What counts as stalking?",
+  "summary": "Repeated behaviour that makes you feel watched or afraid.",
+  "body": "Stalking is when someone keeps contacting, following or watching a person in a way that makes them afraid.\n\n- Following you or waiting outside your home, school or work\n- Repeated calls or messages after you asked them to stop\n- Tracking your phone or checking your accounts\n\nKeeping a simple record of what happens (dates, times, screenshots) can help if you decide to get support.",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "645367f3-b406-4dbc-a497-dd08a769accb",
+  "code": "smp004",
+  "type": "scenario",
+  "topic_id": "online",
+  "audience_ids": [
+   "friends",
+   "men",
+   "parents",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "en",
+  "title": "SAMPLE: Is this harassment? Pressure to send photos",
+  "summary": "When someone online asks for private photos and makes threats.",
+  "body": null,
+  "scenario_situation": "Someone you met online keeps asking for private photos. When you say no, they say they will share an old picture of you with your family.",
+  "scenario_answer": "Yes. This is blackmail and online abuse. It is a crime in many places, and it is not your fault, even if you shared something before.",
+  "scenario_actions": "- Do not send more photos or money.\n- Keep screenshots of the messages and the account name.\n- Block and report the account on the app.\n- Tell someone you trust. You can find verified support in “I Need Help”.",
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "c732fddf-5134-45e5-90dd-314db5bcb574",
+  "code": "smp008",
+  "type": "article",
+  "topic_id": "child-safety",
+  "audience_ids": [
+   "community",
+   "parents",
+   "teachers"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "en",
+  "title": "SAMPLE: Talking with children about body safety",
+  "summary": "Simple words that help children speak up.",
+  "body": "Children are safer when they know they can talk to you about anything.\n\n- Teach the correct names for body parts.\n- Explain that no one should touch their private parts, and that they can say no, even to adults they know.\n- Say there are no secrets that make them feel scared or uncomfortable.\n- Tell them they will never be in trouble for telling you.\n\nIf a child tells you something, stay calm, believe them and thank them for telling you.",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ }
+]

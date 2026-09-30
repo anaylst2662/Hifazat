@@ -1,0 +1,32 @@
+[
+ {
+  "id": "women",
+  "name_en": "Girls & women",
+  "name_ur": "لڑکیاں اور خواتین"
+ },
+ {
+  "id": "men",
+  "name_en": "Boys & men",
+  "name_ur": "لڑکے اور مرد"
+ },
+ {
+  "id": "parents",
+  "name_en": "Parents",
+  "name_ur": "والدین"
+ },
+ {
+  "id": "teachers",
+  "name_en": "Teachers",
+  "name_ur": "اساتذہ"
+ },
+ {
+  "id": "friends",
+  "name_en": "Friends",
+  "name_ur": "دوست"
+ },
+ {
+  "id": "community",
+  "name_en": "Community members",
+  "name_ur": "کمیونٹی کے افراد"
+ }
+]

@@ -130,6 +130,26 @@ You add the tables once by copying two files into Supabase's SQL editor.
 
 ---
 
+## Part D — Add the Phase 3 tables and SAMPLE content (about 5 minutes)
+
+Same method as Part C, with two new files. Do Part C first if you haven't.
+
+1. Supabase → **SQL Editor** → **New query**.
+2. Copy `supabase/migrations/20260930150000_awareness_content.sql` from GitHub
+   (**Copy raw file** button), paste, click **Run**. Expect **"Success"**.
+3. **New query** again. Copy `supabase/seed_awareness_samples.sql`, paste, **Run**.
+   This adds 10 **SAMPLE — DO NOT PUBLISH** learning items.
+4. Check: **Table Editor** → `content_items` shows 10 rows with codes `smp001`…`smp010`.
+5. Vercel → **Deployments** → newest row → **⋯** → **Redeploy**. After 1–3
+   minutes, "Learn & Stay Safe" shows the sample content with SAMPLE labels.
+
+> **About SAMPLE content:** the samples can never be "published". They are only
+> shown because the setting `show_sample_content` (table `app_settings`) is
+> `true`. **Before launch** that setting must be `false` and the samples deleted.
+> This is on the pre-launch checklist.
+
+---
+
 ## Testing on your phone
 
 1. Open the Vercel link in **Chrome** on your Android phone.

@@ -61,3 +61,13 @@ export const SAFETY_PLAN_TEXT = [
   "planDeleted",
   "callAria",
 ] as const;
+
+export const LEARN_BROWSER_TEXT = [
+  "learnAudienceLabel", "learnAudienceAll", "learnTopicsTitle", "learnTopicAll", "learnScenariosTitle",
+  "learnGuidesTitle", "learnQuizzesTitle", "learnCampaignsTitle", "learnEmpty", "sampleBadge",
+  "typeArticle", "typeInfographic", "typeVideo", "typeFaq", "typeScenario", "typeQuiz", "typeCampaign",
+] as const;
+
+export const QUIZ_TEXT = [
+  "quizQuestionOf", "quizCorrect", "quizNotQuite", "quizNext", "quizFinish", "quizResult", "quizPrivacy", "quizRetry",
+] as const;

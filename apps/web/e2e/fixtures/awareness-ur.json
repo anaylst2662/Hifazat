@@ -1,0 +1,293 @@
+[
+ {
+  "id": "6e35c712-f421-44e6-971a-a38e29626cf5",
+  "code": "smp001",
+  "type": "article",
+  "topic_id": "consent",
+  "audience_ids": [
+   "community",
+   "friends",
+   "men",
+   "parents",
+   "teachers",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "ur",
+  "title": "نمونہ: رضامندی کیا ہے؟",
+  "summary": "رضامندی کا مطلب ہے واضح اور آزادانہ \"ہاں\"۔ اسے کسی بھی وقت بدلا جا سکتا ہے۔",
+  "body": "رضامندی کا مطلب ہے کسی بات پر بغیر دباؤ، خوف یا دھمکی کے آزادانہ طور پر راضی ہونا۔\n\n- رضامندی آزادانہ ہونی چاہیے۔ خاموشی یا خوف \"ہاں\" نہیں ہے۔\n- رضامندی کسی بھی وقت واپس لی جا سکتی ہے۔\n- ایک بات پر راضی ہونے کا مطلب ہر بات پر راضی ہونا نہیں۔\n- سویا ہوا، نشے میں یا بہت کم عمر شخص رضامندی نہیں دے سکتا۔\n\nاگر کسی نے آپ کی رضامندی کے بغیر آپ کے ساتھ کچھ کیا تو اس میں آپ کا کوئی قصور نہیں۔ ذمہ داری اس شخص کی ہے جس نے ایسا کیا۔",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "6fdc6cd6-a702-4819-9959-5a630ca06abf",
+  "code": "smp007",
+  "type": "quiz",
+  "topic_id": "consent",
+  "audience_ids": [
+   "friends",
+   "men",
+   "teachers",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": false,
+  "lang": "ur",
+  "title": "نمونہ: مختصر کوئز: رضامندی اور حدود",
+  "summary": "تین مختصر سوال۔ آپ کے جواب آپ کے فون پر ہی رہتے ہیں۔",
+  "body": null,
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": [
+   {
+    "prompt": "کوئی شخص ڈر کی وجہ سے \"ہاں\" کہتا ہے۔ کیا یہ رضامندی ہے؟",
+    "correct": 1,
+    "options": [
+     "ہاں",
+     "نہیں"
+    ],
+    "explanation": "رضامندی آزادانہ ہونی چاہیے۔ ڈر سے کہی گئی \"ہاں\" رضامندی نہیں۔"
+   },
+   {
+    "prompt": "کیا کوئی شخص \"ہاں\" کہنے کے بعد اپنا ارادہ بدل سکتا ہے؟",
+    "correct": 0,
+    "options": [
+     "ہاں، کسی بھی وقت",
+     "نہیں، ہاں آخری ہے"
+    ],
+    "explanation": "رضامندی کسی بھی وقت واپس لی جا سکتی ہے۔"
+   },
+   {
+    "prompt": "ایک دوست آپ کو بتاتا ہے کہ اس کے ساتھ کچھ برا ہوا۔ سب سے زیادہ کیا مدد دیتا ہے؟",
+    "correct": 1,
+    "options": [
+     "یہ پوچھنا کہ اس نے کیا غلطی کی",
+     "سننا اور یقین کرنا",
+     "فوراً دوسروں کو بتا دینا"
+    ],
+    "explanation": "بغیر الزام کے سننا مدد دیتا ہے۔ آگے کیا ہو، یہ انہیں طے کرنے دیں۔"
+   }
+  ],
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "631f1f9e-c747-4e77-babf-368bb43215fe",
+  "code": "smp010",
+  "type": "campaign",
+  "topic_id": "consent",
+  "audience_ids": [
+   "community",
+   "friends",
+   "men",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": false,
+  "lang": "ur",
+  "title": "نمونہ: نہیں کا مطلب نہیں",
+  "summary": "حدود کا احترام کریں۔ ہر بار۔",
+  "body": "\"نہیں\" ایک مکمل جواب ہے۔ اسے کسی وجہ کی ضرورت نہیں، اور یہ احترام کا حق دار ہے۔",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": "/samples/campaign-smp010-ur.jpg",
+  "image_alt": "پوسٹر جس پر لکھا ہے: نہیں کا مطلب نہیں۔",
+  "video_url": null,
+  "share_text": "نہیں کا مطلب نہیں۔ حدود کا احترام کریں۔ ہر بار۔"
+ },
+ {
+  "id": "6110a709-bf96-4062-a11a-d938c4dcbf0f",
+  "code": "smp002",
+  "type": "article",
+  "topic_id": "harassment",
+  "audience_ids": [
+   "community",
+   "men",
+   "teachers",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "ur",
+  "title": "نمونہ: ہراسانی کیا ہے؟",
+  "summary": "ناپسندیدہ باتیں یا حرکتیں جو آپ کو غیر محفوظ، خوف زدہ یا شرمندہ محسوس کرائیں۔",
+  "body": "ہراسانی ایسا ناپسندیدہ رویہ ہے جو کسی کو غیر محفوظ، خوف زدہ یا شرمندہ محسوس کرائے۔ یہ گلی میں، اسکول میں، کام پر، گھر میں یا آن لائن ہو سکتی ہے۔\n\n- کسی کے جسم یا شکل کے بارے میں تبصرے\n- کسی کا پیچھا کرنا، یا ڈرانے کے لیے گھورنا\n- اجازت کے بغیر چھونا\n- ناپسندیدہ پیغامات، کالیں یا تصاویر\n\nہراسانی کبھی بھی اس شخص کا قصور نہیں جس کے ساتھ یہ ہو۔ اس کا تعلق اس بات سے نہیں کہ وہ کیا پہنتے ہیں یا کہاں جاتے ہیں۔",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "1f307794-cb8d-42ea-b863-dffc1d7a6329",
+  "code": "smp003",
+  "type": "scenario",
+  "topic_id": "harassment",
+  "audience_ids": [
+   "friends",
+   "parents",
+   "teachers",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "ur",
+  "title": "نمونہ: کیا یہ ہراسانی ہے؟ اسکول جاتے ہوئے",
+  "summary": "ایک مختصر صورتحال، اور آپ کیا کر سکتے ہیں۔",
+  "body": null,
+  "scenario_situation": "روزانہ لڑکوں کا ایک گروہ پل کے قریب انتظار کرتا ہے اور اسکول جاتی ایک لڑکی پر تبصرے کرتا ہے۔ کل انہوں نے کچھ دور تک اس کا پیچھا بھی کیا۔",
+  "scenario_answer": "جی ہاں۔ بار بار ناپسندیدہ تبصرے اور پیچھا کرنا ہراسانی ہے۔ اس میں لڑکی کا کوئی قصور نہیں، اور اس کا تعلق اس کے لباس یا چال سے نہیں۔",
+  "scenario_actions": "- اگر ممکن ہو تو کسی دوست یا گھر کے فرد کے ساتھ جائیں۔\n- کسی قابلِ بھروسہ بڑے یا استاد کو بتائیں۔\n- تاریخیں، وقت اور جگہیں لکھ لیں۔ یہ بعد میں مدد دے سکتا ہے۔\n- \"مجھے مدد چاہیے\" میں آپ تصدیق شدہ مدد تلاش کر سکتے ہیں۔",
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "e3abb400-eeb1-4b9b-8a7f-0f7059488ab3",
+  "code": "smp009",
+  "type": "campaign",
+  "topic_id": "harassment",
+  "audience_ids": [
+   "community",
+   "friends",
+   "men",
+   "parents",
+   "teachers",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": false,
+  "lang": "ur",
+  "title": "نمونہ: خوف کو اپنی آواز دبانے نہ دیں",
+  "summary": "سیکھیں۔ روک تھام کریں۔ تحفظ کریں۔ رپورٹ کریں۔ سہارا دیں۔",
+  "body": "کسی کو بھی خوف کی وجہ سے خاموش نہیں رہنا چاہیے۔ یہ پیغام شیئر کریں تاکہ لوگ جانیں کہ مدد موجود ہے۔",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": "/samples/campaign-smp009-ur.jpg",
+  "image_alt": "پوسٹر جس پر لکھا ہے: خوف کو اپنی آواز دبانے نہ دیں۔",
+  "video_url": null,
+  "share_text": "خوف کو اپنی آواز دبانے نہ دیں۔ سیکھیں۔ روک تھام کریں۔ تحفظ کریں۔ رپورٹ کریں۔ سہارا دیں۔"
+ },
+ {
+  "id": "ec05f798-2ba4-44f1-96d4-25aad0f0f286",
+  "code": "smp005",
+  "type": "faq",
+  "topic_id": "domestic",
+  "audience_ids": [
+   "community",
+   "friends",
+   "men",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "ur",
+  "title": "نمونہ: اگر مار پیٹ نہ ہو تو کیا پھر بھی یہ زیادتی ہے؟",
+  "summary": "زیادتی صرف جسمانی نہیں ہوتی۔",
+  "body": "جی ہاں، ہو سکتی ہے۔ زیادتی صرف مار پیٹ نہیں۔ یہ یہ بھی ہو سکتی ہے:\n\n- یہ کنٹرول کرنا کہ آپ کس سے ملیں، کہاں جائیں یا کیا پہنیں\n- آپ کی رقم یا دستاویزات لے لینا\n- دھمکیاں، مسلسل توہین یا آپ کو خوف زدہ رکھنا\n- کسی بھی جنسی عمل پر مجبور کرنا، شادی کے اندر بھی\n\nگھر میں محفوظ محسوس کرنا آپ کا حق ہے۔ مدد موجود ہے، اور آگے کیا کرنا ہے یہ آپ طے کر سکتے ہیں۔",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "e84760e4-4bdb-40f9-a20f-ea46482238c9",
+  "code": "smp006",
+  "type": "faq",
+  "topic_id": "stalking",
+  "audience_ids": [
+   "friends",
+   "men",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": false,
+  "lang": "ur",
+  "title": "نمونہ: پیچھا کرنا کسے کہتے ہیں؟",
+  "summary": "بار بار کا ایسا رویہ جس سے لگے کہ آپ پر نظر رکھی جا رہی ہے یا آپ خوف زدہ ہوں۔",
+  "body": "پیچھا کرنا یہ ہے کہ کوئی شخص بار بار کسی سے رابطہ کرے، اس کا پیچھا کرے یا اس پر نظر رکھے، جس سے وہ خوف زدہ ہو۔\n\n- آپ کا پیچھا کرنا یا آپ کے گھر، اسکول یا دفتر کے باہر انتظار کرنا\n- منع کرنے کے بعد بھی بار بار کالیں یا پیغامات\n- آپ کے فون کو ٹریک کرنا یا آپ کے اکاؤنٹس دیکھنا\n\nجو کچھ ہو اس کا سادہ ریکارڈ (تاریخیں، وقت، اسکرین شاٹ) رکھنا مدد لینے کا فیصلہ کرنے پر کام آ سکتا ہے۔",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "645367f3-b406-4dbc-a497-dd08a769accb",
+  "code": "smp004",
+  "type": "scenario",
+  "topic_id": "online",
+  "audience_ids": [
+   "friends",
+   "men",
+   "parents",
+   "women"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "ur",
+  "title": "نمونہ: کیا یہ ہراسانی ہے؟ تصاویر بھیجنے کا دباؤ",
+  "summary": "جب کوئی آن لائن نجی تصاویر مانگے اور دھمکیاں دے۔",
+  "body": null,
+  "scenario_situation": "کوئی شخص جس سے آپ آن لائن ملے، بار بار نجی تصاویر مانگتا ہے۔ جب آپ انکار کرتے ہیں تو وہ کہتا ہے کہ وہ آپ کی ایک پرانی تصویر آپ کے گھر والوں کو بھیج دے گا۔",
+  "scenario_answer": "جی ہاں۔ یہ بلیک میلنگ اور آن لائن زیادتی ہے۔ بہت سی جگہوں پر یہ جرم ہے، اور اس میں آپ کا کوئی قصور نہیں، چاہے آپ نے پہلے کچھ شیئر کیا ہو۔",
+  "scenario_actions": "- مزید تصاویر یا رقم نہ بھیجیں۔\n- پیغامات اور اکاؤنٹ کے نام کے اسکرین شاٹ محفوظ رکھیں۔\n- ایپ پر اکاؤنٹ کو بلاک اور رپورٹ کریں۔\n- کسی قابلِ بھروسہ شخص کو بتائیں۔ \"مجھے مدد چاہیے\" میں تصدیق شدہ مدد موجود ہے۔",
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ },
+ {
+  "id": "c732fddf-5134-45e5-90dd-314db5bcb574",
+  "code": "smp008",
+  "type": "article",
+  "topic_id": "child-safety",
+  "audience_ids": [
+   "community",
+   "parents",
+   "teachers"
+  ],
+  "is_sample": true,
+  "is_core": true,
+  "lang": "ur",
+  "title": "نمونہ: بچوں سے جسمانی تحفظ کے بارے میں بات کرنا",
+  "summary": "سادہ الفاظ جو بچوں کو بولنے میں مدد دیتے ہیں۔",
+  "body": "بچے زیادہ محفوظ ہوتے ہیں جب انہیں معلوم ہو کہ وہ آپ سے ہر بات کر سکتے ہیں۔\n\n- انہیں جسم کے حصوں کے درست نام سکھائیں۔\n- بتائیں کہ کسی کو ان کے نجی حصوں کو چھونے کا حق نہیں، اور وہ جاننے والے بڑوں کو بھی \"نہیں\" کہہ سکتے ہیں۔\n- بتائیں کہ ایسا کوئی راز نہیں ہونا چاہیے جو انہیں ڈرائے یا پریشان کرے۔\n- انہیں یقین دلائیں کہ آپ کو بتانے پر وہ کبھی مشکل میں نہیں پڑیں گے۔\n\nاگر کوئی بچہ آپ کو کچھ بتائے تو پرسکون رہیں، اس پر یقین کریں اور بتانے کا شکریہ ادا کریں۔",
+  "scenario_situation": null,
+  "scenario_answer": null,
+  "scenario_actions": null,
+  "quiz": null,
+  "image_url": null,
+  "image_alt": null,
+  "video_url": null,
+  "share_text": null
+ }
+]

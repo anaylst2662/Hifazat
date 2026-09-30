@@ -5,6 +5,7 @@ import "../globals.css";
 import { isLocale, locales, textDirection } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { AppHeader } from "@/components/AppHeader";
+import { QuickExitScript } from "@/components/QuickExitScript";
 import { AppFooter } from "@/components/AppFooter";
 import { NavTracker } from "@/components/NavTracker";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
@@ -58,6 +59,8 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
   return (
     <html lang={lang} dir={textDirection(lang)} className={fonts}>
       <body className="flex min-h-dvh flex-col">
+        {/* First thing on the page, so Quick Exit works before anything else loads. */}
+        <QuickExitScript />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:start-2 focus:top-2 focus:z-50 focus:rounded-lg focus:bg-surface focus:p-3"

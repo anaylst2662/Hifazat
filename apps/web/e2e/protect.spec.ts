@@ -127,7 +127,7 @@ test("Danger and Safety Plan pages work offline", async ({ page, context }) => {
   await expect
     .poll(() =>
       page.evaluate(async () => {
-        const cache = await caches.open("hifazat-pages-v3");
+        const cache = await caches.open("hifazat-pages-v4");
         return (await cache.keys()).map((r) => new URL(r.url).pathname);
       }),
     )

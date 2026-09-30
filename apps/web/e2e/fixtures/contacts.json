@@ -1,6 +1,6 @@
 [
  {
-  "id": "24de5eef-c47c-4541-b81e-c90859b37ad2",
+  "id": "1d3295aa-8fab-4b1a-a29e-31e5d9929542",
   "kind": "emergency",
   "label_en": "PLACEHOLDER — Police emergency",
   "label_ur": "عارضی نمبر — پولیس ایمرجنسی",
@@ -15,7 +15,7 @@
   "verified_at": null
  },
  {
-  "id": "57009323-e080-45ff-b03d-032d999d03ae",
+  "id": "e374758a-e75e-4fd5-9da9-5c4fc2123edd",
   "kind": "emergency",
   "label_en": "PLACEHOLDER — Rescue and ambulance",
   "label_ur": "عارضی نمبر — ریسکیو اور ایمبولینس",
@@ -30,7 +30,7 @@
   "verified_at": null
  },
  {
-  "id": "eae65b2e-091c-4e31-aa3f-e42ff029a8a2",
+  "id": "f61df03c-fd9b-41d1-8b53-72dce817eb1c",
   "kind": "helpline",
   "label_en": "PLACEHOLDER — Women's support helpline",
   "label_ur": "عارضی نمبر — خواتین کی مدد کی ہیلپ لائن",
@@ -45,7 +45,7 @@
   "verified_at": null
  },
  {
-  "id": "34ce01e8-ca1e-4d59-b723-79a0a1685715",
+  "id": "546a86a2-0879-4a27-93a2-b14f7605dcb5",
   "kind": "helpline",
   "label_en": "PLACEHOLDER — Child protection helpline",
   "label_ur": "عارضی نمبر — بچوں کے تحفظ کی ہیلپ لائن",
@@ -60,7 +60,7 @@
   "verified_at": null
  },
  {
-  "id": "6049f3e9-5985-46bb-8e65-3d7534efc0e3",
+  "id": "a6186fca-1d6b-4c39-b635-5a75e881ab3d",
   "kind": "helpline",
   "label_en": "PLACEHOLDER — Emotional support helpline",
   "label_ur": "عارضی نمبر — جذباتی سہارے کی ہیلپ لائن",
@@ -75,7 +75,7 @@
   "verified_at": null
  },
  {
-  "id": "ecd98505-4f98-491f-88b6-5989c039486f",
+  "id": "1614b812-5608-422b-a787-420ef2b00499",
   "kind": "emergency",
   "label_en": "PLACEHOLDER — Gilgit police station",
   "label_ur": "عارضی نمبر — گلگت پولیس اسٹیشن",
@@ -90,7 +90,7 @@
   "verified_at": null
  },
  {
-  "id": "f318a1e0-86c4-43f8-b72d-850d95430777",
+  "id": "a46967e4-933a-42a3-879a-217ad018e4f1",
   "kind": "emergency",
   "label_en": "PLACEHOLDER — Hunza police station",
   "label_ur": "عارضی نمبر — ہنزہ پولیس اسٹیشن",
@@ -105,7 +105,7 @@
   "verified_at": null
  },
  {
-  "id": "de2ffdae-c518-4497-bc42-5bd27d39e252",
+  "id": "f4450389-5589-4079-b60e-79c65810089c",
   "kind": "emergency",
   "label_en": "PLACEHOLDER — Skardu hospital emergency",
   "label_ur": "عارضی نمبر — سکردو ہسپتال ایمرجنسی",
