@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/*
+ * Hifazat design system.
+ * Calm, gentle colors with strong text contrast (WCAG AA or better).
+ * Every color is a named token so it can be changed in one place.
+ */
+@theme {
+  /* Brand and surfaces */
+  --color-brand: #0f5c4d;
+  --color-brand-soft: #e3efeb;
+  --color-surface: #f7f5f0;
+  --color-card: #ffffff;
+  --color-ink: #1d2a26;
+  --color-ink-soft: #4a5a55;
+  --color-line: #d9d4c9;
+
+  /* The five home actions (text on each is white, except "report": dark text) */
+  --color-danger: #b3261e;
+  --color-learn: #1f6f46;
+  --color-help: #a84d00;
+  --color-report: #f2c230;
+  --color-report-ink: #3a2c00;
+  --color-support: #1f5fa8;
+
+  /* Quick Exit: always the same, always recognisable */
+  --color-exit: #222b33;
+
+  /* System fonts load instantly (nothing to download on slow connections). */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
+  --font-urdu: var(--font-nastaliq), "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif;
+}
+
+html {
+  /* Respect the phone's text-size setting; everything is sized in rem. */
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Urdu: Nastaliq script needs extra line height to stay readable. */
+html[lang="ur"] {
+  /* Every text size gets taller lines in Urdu. */
+  --text-xs--line-height: 2;
+  --text-sm--line-height: 2;
+  --text-base--line-height: 2.1;
+  --text-lg--line-height: 2.1;
+  --text-xl--line-height: 2;
+  --text-2xl--line-height: 2;
+  --text-3xl--line-height: 2;
+}
+
+html[lang="ur"] body {
+  font-family: var(--font-urdu);
+  line-height: 2.1;
+}
+
+/* Clear, thick focus outline for keyboard and switch-access users. */
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
