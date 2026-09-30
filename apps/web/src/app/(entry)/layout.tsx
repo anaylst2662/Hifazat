@@ -4,6 +4,7 @@ import "../globals.css";
 export const metadata: Metadata = {
   title: "Hifazat",
   referrer: "no-referrer",
+  robots: process.env.NEXT_PUBLIC_SHOW_PREVIEW_BANNER !== "false" ? { index: false, follow: false } : undefined,
   icons: { icon: "/icons/icon-192.png" },
 };
 

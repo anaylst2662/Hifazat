@@ -2,94 +2,78 @@
 
 > **Don't Let Fear Silence You.** Learn. Prevent. Protect. Report. Support.
 
-This document explains how Hifazat is built, in plain language. The database
-design is in [DATABASE.md](DATABASE.md). How to set up your computer is in
-[SETUP.md](SETUP.md).
+This document explains how Hifazat is built. The database design is in
+[DATABASE.md](DATABASE.md). The founder's setup steps (Vercel, Supabase) are in
+[SETUP.md](SETUP.md). The original brief is in
+[HIFAZAT_BUILD_PROMPT.md](HIFAZAT_BUILD_PROMPT.md).
+
+> **Change of plan (2026-09-30): web app first.** Installing Flutter on the
+> founder's computer was taking too long, and the founder wants to test by
+> opening a link, with nothing to install. So we build a **web app** first
+> (Next.js), which people can also install on their phone's home screen (PWA).
+> The Flutter mobile app is **paused, not deleted**: it lives in `apps/mobile`
+> and will reuse the same backend and the same text files later. All features,
+> safety rules, principles and phases stay the same.
 
 ---
 
 ## 1. The big picture
 
-Hifazat has three parts that all live in this one project folder:
-
 | Part | Who uses it | What it is |
 |---|---|---|
-| **The Hifazat app** | The public (anyone, no account needed) | A Flutter app for Android (first), iPhone, and the web |
-| **The staff dashboard** | Organization staff and Hifazat admins (login required) | A Flutter **website** built from the same code |
-| **The backend** | Nobody sees it directly | Supabase: the database, logins, file storage, and small server programs ("Edge Functions") |
+| **Hifazat web app** | The public (no account needed) | A fast, mobile-first website, installable on phones (PWA), in English and Urdu |
+| **Staff dashboard + admin panel** | Organization staff and Hifazat admins (login) | Pages under `/staff/…` in the same web app, login required, never saved offline (Phase 7) |
+| **Backend** | Nobody sees it directly | Supabase: database, logins, file storage, security rules, server functions |
+| **Flutter mobile app** *(later)* | The public | Native Android/iOS app using the **same** backend and text files |
 
 ```
- ┌─────────────────────┐        ┌───────────────────────────────┐
- │  Hifazat app        │        │  Supabase (the backend)       │
- │  (Android/iOS/web)  │ ─────▶ │  • Database (with security    │
- │  works offline for  │        │    rules on every table)      │
- │  emergencies        │        │  • Private file storage       │
- └─────────────────────┘        │  • Edge Functions:            │
- ┌─────────────────────┐        │     - submit a report         │
- │  Staff dashboard    │ ─────▶ │     - check report status     │
- │  (website, login)   │        │     - AI assistant ──▶ Claude │
- └─────────────────────┘        └───────────────────────────────┘
+ ┌───────────────────────┐        ┌────────────────────────────────┐
+ │ Web app (Next.js)     │        │ Supabase (shared backend)      │
+ │ • hosted on Vercel    │ ─────▶ │ • Database + Row Level Security│
+ │ • installable (PWA)   │        │ • Private file storage         │
+ │ • works offline for   │        │ • Edge Functions:              │
+ │   emergencies         │        │    - submit report             │
+ └───────────────────────┘        │    - reference number / status │
+ ┌───────────────────────┐        │    - AI assistant ──▶ Claude   │
+ │ Flutter app (later)   │ ─────▶ │                                │
+ └───────────────────────┘        └────────────────────────────────┘
 ```
 
-**Key idea:** The app never talks to Claude (the AI) directly, and never holds
-secret keys. Anything secret or sensitive happens inside Supabase.
+**Key idea:** all important logic lives in Supabase (security rules, database
+functions, Edge Functions), not in the web app. The web app only shows things
+and calls Supabase. So the Flutter app can reuse everything later without
+rewriting it. The web app never holds secret keys and never talks to Claude
+directly.
 
 ---
 
-## 2. Technology choices, and my review of them
+## 2. Technology
 
-You asked me to say if any choice is wrong for a beginner. I reviewed each one
-and **I agree with all of them**. I have added a few small adjustments,
-explained below.
+| Choice | Why |
+|---|---|
+| **Next.js** (App Router) + **TypeScript** + **Tailwind CSS** | Very widely used; pages are pre-built as static files, so they load fast on cheap phones |
+| **Vercel** hosting, connected to GitHub | Every push gives a new link to test; nothing to install locally |
+| **Supabase** (unchanged) | Database, login, storage, security rules, server functions |
+| **PWA** with a hand-written offline helper (`apps/web/public/sw.js`) | About 150 lines we fully understand; explicitly never saves staff pages |
+| **Shared translations** in `shared/i18n/*.json` | One file per language, flat keys, readable by both the web app and Flutter |
+| Icons: `lucide-react` | Only the icons we use are sent to the phone |
+| Tests: **Playwright** browser tests | Automatically checks Quick Exit, Back, Urdu right-to-left layout, offline mode |
 
-| Choice | Verdict | Notes |
-|---|---|---|
-| Flutter (one codebase) | ✅ Good | Very well supported. Fast on low-end Android. |
-| Supabase | ✅ Good | No server to run. Has security rules (RLS), storage, and functions built in. |
-| Row Level Security on every table | ✅ Essential | We will write a test for every rule in Phase 8. |
-| Claude via Edge Function only | ✅ Correct | The API key stays on the server. |
-| OpenStreetMap via `flutter_map` | ✅ Good, **one caution** | See "Maps" below. |
-| Riverpod for state | ✅ Good | It is the most common modern choice. We will use it everywhere, one way. |
-| English + Urdu (RTL) | ✅ Good | We use Flutter's built-in translation system (one file per language). Adding Shina or Burushaski later = add one file. |
+### Earlier decisions: still approved, adapted to the web
 
-### My adjustments (please approve)
-
-1. **The staff dashboard is NOT inside the Android app.**
-   It stays in the same project, but it gets its own entry point, so it is only
-   built into the **website**. Reasons:
-   - The public app stays small and fast on low-end phones.
-   - If someone looks at a user's phone, there is no sign of staff features.
-   - There is less code in the app that could be attacked.
-
-2. **Reports are submitted through a server function, not written directly
-   to the database.** Anonymous people cannot touch the reports table at all.
-   A small Edge Function receives the report, checks it, saves it, and
-   returns the reference number and private code. This is much safer.
-
-3. **Maps caution.** When the map is shown, the phone downloads map pictures
-   ("tiles") from a tile server. That server can see which area is being
-   viewed (not the user's GPS, just the map area). So:
-   - The map loads **only when the user opens it**. The directory also works
-     as a plain list with no map.
-   - The user's own GPS location is **never** sent anywhere unless they
-     choose to share it.
-   - The public OpenStreetMap tile server is fine for development, but its
-     rules do not allow heavy app use. **Before launch** we switch to a tile
-     provider that allows it (or host our own). I'll remind you in Phase 9.
-
-4. **Server location.** When you create the Supabase project, choose the
-   region closest to Pakistan (**Mumbai / South Asia** if offered, otherwise
-   Singapore). Whether data may be stored outside Pakistan is a legal
-   question — it's on the pre-launch legal checklist.
-
-5. **Encrypted storage on the phone.** The safety plan will be saved in an
-   encrypted local database. The encryption key is kept in the phone's secure
-   key store (Android Keystore / iOS Keychain). Exact package chosen in
-   Phase 2.
-
-6. **No push notifications, analytics, or crash-reporting services in the
-   MVP.** They send data to third parties. We can add privacy-respecting ones
-   later, only if needed.
+1. **Staff pages are separated.** They live under `/staff/…` with their own
+   layout, require login, are never saved by the offline helper, and are hidden
+   from search engines (already set up in `next.config.ts` and `sw.js`).
+2. **Reports go through a Supabase Edge Function**, never direct table writes.
+3. **Maps:** the web equivalent of `flutter_map` is **Leaflet** with
+   OpenStreetMap. It loads only when the user opens the map; the directory also
+   works as a plain list. Before launch we switch to a tile provider that
+   allows app use.
+4. **Supabase region: Singapore.**
+5. **Encrypted storage on the device:** the safety plan is stored only in this
+   browser, encrypted with the browser's built-in encryption (Web Crypto,
+   AES-GCM), with a clear warning about shared devices (Phase 2).
+6. **No push notifications, analytics or crash-reporting services** in the MVP.
 
 ---
 
@@ -97,74 +81,96 @@ explained below.
 
 ```
 Hifazat/
-├── PROGRESS.md            ← what's done, what's next, decisions (read this first!)
-├── docs/                  ← plain-English documents (this file, database, setup)
-├── ai/system_prompt.md    ← the AI assistant's instructions (Phase 6), reviewable
-├── lib/                   ← the Flutter app code
-│   ├── main.dart              public app entry point
-│   ├── main_dashboard.dart    staff website entry point (Phase 7)
-│   ├── core/                  shared: theme, colors, translations, Quick Exit, offline cache
-│   └── features/              one folder per feature:
-│       ├── home/  protect/  safety_plan/  awareness/  directory/
-│       ├── report/  supporter/  assistant/  settings/
-│       └── dashboard/ admin/  (website only)
-├── supabase/
-│   ├── config.toml         Supabase project settings
-│   ├── migrations/         the database design, as SQL files (numbered, in order)
-│   ├── seed.sql            PLACEHOLDER numbers + SAMPLE content (never real)
-│   └── functions/          server programs: submit-report, report-status, assistant
-├── android/ ios/ web/      platform files (created by Flutter; rarely edited)
-└── test/                   automated tests
+├── PROGRESS.md              ← status, next steps, decisions (read first!)
+├── docs/                    ← plain-English documents
+├── shared/i18n/             ← en.json, ur.json: ALL words shown to users
+├── ai/system_prompt.md      ← AI assistant instructions (Phase 6)
+├── supabase/                ← database (migrations), security rules, Edge Functions
+├── apps/
+│   ├── web/                 ← the Next.js web app (active)
+│   │   ├── src/app/[lang]/      public pages, e.g. /en/now, /ur/tips
+│   │   ├── src/app/(entry)/     the start address "/" (picks the language)
+│   │   ├── src/app/staff/       staff dashboard + admin (Phase 7)
+│   │   ├── src/components/      Quick Exit, Back, language switch, …
+│   │   ├── src/i18n/            loads the shared translation files
+│   │   ├── public/sw.js         offline helper
+│   │   └── e2e/                 automated browser tests
+│   └── mobile/              ← Flutter app (paused)
+└── .env.example             ← where each setting/secret belongs
 ```
+
+### Web addresses (kept neutral on purpose)
+
+| Section | Address | Phase |
+|---|---|---|
+| Home | `/en`, `/ur` | 1 ✅ |
+| I'm in Danger | `/en/now` | 2 |
+| Learn & Stay Safe | `/en/learn` | 3 |
+| I Need Help | `/en/services` | 4 |
+| I Want to Report | `/en/form` | 5 |
+| I'm Supporting Someone | `/en/guide` | 6 |
+| Staying safe online | `/en/tips` | 1 ✅ |
+| Staff / admin | `/staff/…` | 7 |
+
+Choices made inside a page (like a report type) are never put in the address.
+Every public page shows only "Hifazat" in the browser tab.
 
 ---
 
 ## 4. Safety rules built into the design
 
-These apply everywhere and I'll check them at the end of every phase:
+Checked at the end of every phase:
 
-- **Quick Exit** on every sensitive screen. One tap goes to a neutral
-  "Notes" screen and clears the back history.
-- **Emergency first.** "I'm in Danger" never asks for login or a form first.
+- **Quick Exit** on every page: a clearly visible button, plus pressing **Esc
+  three times**. It uses `location.replace()` to go to a neutral page (a weather
+  search), so Back does not return to that Hifazat page. The site also tells the
+  destination nothing about where the visitor came from (`Referrer-Policy:
+  no-referrer`). We say honestly that the browser's history list can still show
+  Hifazat, and explain private mode on the "Staying safe online" page.
+- **Normal Back navigation** still works (the founder's choice), plus a large
+  on-screen **Back** button on every inner page.
+- **Emergency first.** "I'm in Danger" never asks for login or a form.
 - **Offline.** Emergency numbers, the safety plan and core safety guides are
-  saved on the phone and work with no internet.
+  saved on the device (Phase 2 onwards; the home and tips pages already are).
 - **No phone numbers in the code.** All numbers come from the database with
-  `verified_by` / `verified_at`. Development data is marked **PLACEHOLDER**,
-  and the app shows a clear warning banner whenever a number is not verified.
+  `verified_by` / `verified_at`; development data is marked **PLACEHOLDER**.
 - **No account needed** for Learn, Danger, Find Help and Anonymous Report.
-- **Non-blaming language** in every piece of text.
-- **Calm UI:** large buttons, icons with every label, good contrast, text that
-  scales, and screen-reader labels.
+- **Non-blaming language** everywhere.
+- **Calm, mobile-first UI:** large buttons, an icon with every label, strong
+  contrast, text that grows with the phone's text size, screen-reader labels,
+  system fonts (nothing to download for English).
+- **Test versions** show a yellow "Test version" banner and ask search engines
+  not to list them.
 
 ---
 
 ## 5. Build phases
 
-We stop after each phase so you can test and approve.
-
 | Phase | What we build | How you'll test it |
 |---|---|---|
-| **0** Setup & plan | Project skeleton, Git, docs, database design | Read the docs; run the placeholder app |
-| **1** App shell | Home screen, navigation, Quick Exit, English/Urdu + RTL, design system | Run the app on your phone |
-| **2** Protect & Safety Plan | "I'm in Danger", trusted contacts, offline numbers, safety plan | Airplane-mode test on your phone |
-| **3** Awareness Hub | Articles, scenario cards, quizzes, campaigns, offline cache | Browse SAMPLE content |
+| **0** Setup & plan | Project, Git, docs, database design | ✅ Done |
+| **0b** Web-first setup | Folders reorganized, Next.js app, Vercel | Open the Vercel link |
+| **1** App shell | Home, navigation, Quick Exit, English/Urdu + RTL, design | Open the link on your phone |
+| **2** Protect & Safety Plan | "I'm in Danger", trusted contacts, offline numbers, safety plan in the browser | Airplane-mode test on your phone |
+| **3** Awareness Hub | Articles, scenario cards, quizzes, campaigns, offline | Browse SAMPLE content |
 | **4** Directory & Map | Verified organizations, Find Help flow, map | Search and filter orgs |
-| **5** Reporting | Three report modes, reference number, attachments, status check | Submit a test report, check status |
+| **5** Reporting | Three report modes, reference number, attachments, status check | Submit a test report |
 | **6** Supporter guide + AI | "I'm Supporting Someone", AI assistant | Chat with the assistant |
-| **7** Dashboard & Admin | Staff login, roles, case views, content, verification, stats | Log in as test staff |
+| **7** Dashboard & Admin | `/staff`: login, roles, cases, content, verification, statistics | Log in as test staff |
 | **8** Security review | Test every security rule; written risk report | Read the report |
-| **9** Release prep | Android test APK, website deployed, pre-launch checklist | Install the APK |
+| **9** Release prep | Production web deploy + PWA; pre-launch checklist | Install from the browser |
+| **Later** Flutter app | Android/iOS app on the same backend | Install the test APK |
 
 ---
 
 ## 6. Where secrets go
 
-| Secret | Where it lives | Never |
+| Secret / setting | Where it lives | Never |
 |---|---|---|
-| Supabase **URL** and **anon (public) key** | In a local `.env` file on your computer, passed to the app when building | Not secret by itself — security comes from the database rules |
-| Supabase **service_role key** | Only in the Supabase dashboard | ❌ Never in the app, never in Git, never shared in chat |
-| **Anthropic (Claude) API key** | Supabase → Edge Functions → Secrets | ❌ Never in the app, never in Git |
-| Database password | Your password manager | ❌ Never in Git |
-| Android signing key (Phase 9) | Your computer + a backup in your password manager | ❌ Never in Git |
+| Supabase **URL** + **anon (public) key** | Vercel → Environment Variables (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`) | Designed to be public; the database rules protect data |
+| Supabase **service_role / secret key** | Only inside the Supabase dashboard | ❌ Never in the web app, Vercel, Git, or chat |
+| **Anthropic (Claude) API key** | Supabase → Edge Functions → Secrets | ❌ Never in the web app, Vercel, or Git |
+| Database password | Your password manager | ❌ Never in Git or chat |
 
-`.gitignore` already blocks `.env` files and signing keys from being saved to Git.
+`.gitignore` blocks `.env` files, and `apps/web/.env.example` shows exactly which
+two public values the web app may have.

@@ -1,115 +1,116 @@
-# Setting up your computer and Supabase
+# Setup: Vercel and Supabase (nothing to install)
 
-Follow these steps once. Take your time, and tell me if any step looks
-different on your screen. Screens change often, so small differences are normal.
+With the web-first plan, you **don't need to install anything** on your
+computer. You test Hifazat by opening a link in your browser or on your phone.
 
-> **Golden rule:** never paste a *secret* key (service_role key, Anthropic API
-> key, database password) into a chat, an email, or a code file.
+Screens change often, so small differences from these steps are normal. Tell
+me if something looks very different.
 
----
-
-## Part A — Install the tools on your computer (about 1–2 hours, mostly downloading)
-
-These steps are for **Windows**. If you use a Mac, tell me and I'll give you
-Mac steps.
-
-1. **Install Git** (saves the history of our work).
-   1. Go to <https://git-scm.com/downloads> and download Git for Windows.
-   2. Run the installer and keep clicking **Next** (the defaults are fine).
-
-2. **Install Visual Studio Code** (the editor for viewing code).
-   1. Go to <https://code.visualstudio.com> and click **Download for Windows**.
-   2. Install it with the default options.
-
-3. **Install Android Studio** (gives us the Android tools and a phone emulator).
-   1. Go to <https://developer.android.com/studio> and download Android Studio.
-   2. Install it and open it. Choose **Standard** setup and let it download
-      everything (this takes a while).
-   3. On the welcome screen, click **More Actions → SDK Manager → SDK Tools**
-      tab, tick **Android SDK Command-line Tools**, click **Apply**.
-
-4. **Install Flutter** (through VS Code — the easiest way).
-   1. Open VS Code. Click the **Extensions** icon on the left (four small squares).
-   2. Search for **Flutter**, and install the one by **Dart Code**.
-   3. Press **Ctrl + Shift + P**, type **Flutter: New Project**, press Enter.
-   4. VS Code will say the Flutter SDK was not found. Click **Download SDK**.
-   5. Choose a simple folder such as `C:\dev` (avoid folders with spaces or
-      special characters, and **not** inside `Program Files`).
-   6. When asked, click **Add SDK to PATH**.
-   7. Close and re-open VS Code. (You can cancel the "new project" — we already have one.)
-
-5. **Check everything.**
-   1. In VS Code, open the terminal: menu **Terminal → New Terminal**.
-   2. Type `flutter doctor` and press Enter.
-   3. If it asks to accept Android licenses, type
-      `flutter doctor --android-licenses` and answer `y` to each question.
-   4. **Copy the output of `flutter doctor` and send it to me.** (It contains no
-      secrets.) I'll tell you if anything needs fixing. A red ✗ next to
-      "Visual Studio" or "Xcode" is fine — we don't need those.
-
-6. **Get the Hifazat code onto your computer.**
-   In the VS Code terminal, type these one at a time:
-   ```
-   cd C:\dev
-   git clone https://github.com/anaylst2662/Hifazat
-   cd Hifazat
-   git checkout claude/blissful-shannon-aep047
-   code .
-   ```
-   The last command opens the project in VS Code.
-
-7. **Run the app.**
-   - **In a browser (quickest):** in the terminal type `flutter run -d chrome`.
-   - **On your Android phone (best test):**
-     1. On the phone: **Settings → About phone** → tap **Build number** 7 times
-        to turn on Developer options.
-     2. **Settings → System → Developer options** → turn on **USB debugging**.
-     3. Connect the phone with a USB cable and tap **Allow** on the phone.
-     4. In the terminal type `flutter devices` — your phone should appear.
-     5. Type `flutter run` and choose your phone.
-   - You should see a screen saying **"Hifazat — setup complete"**.
+> **Golden rule:** never paste a *secret* key (Supabase service_role / secret
+> key, Anthropic API key, database password) into a chat, an email, a code file,
+> or Vercel.
 
 ---
 
-## Part B — Create the Supabase project (about 15 minutes)
+## Part A — Create a free Vercel account and connect GitHub (about 10 minutes)
 
-We don't use Supabase inside the app until Phase 2, but it's good to set it up now.
+Vercel turns our code on GitHub into a website. Every time I push changes, it
+builds a new version and gives you a link.
+
+1. Go to <https://vercel.com/signup>.
+2. Choose **Hobby** (free), type your name, and click **Continue**.
+3. Click **Continue with GitHub** and sign in with the GitHub account that owns
+   `anaylst2662/Hifazat`. Click **Authorize Vercel**.
+4. On the Vercel dashboard, click **Add New…** → **Project**.
+5. Under **Import Git Repository**, find **Hifazat** and click **Import**.
+   - If you don't see it: click **Adjust GitHub App Permissions** (or
+     **Configure GitHub App**), choose **Only select repositories**, pick
+     **Hifazat**, click **Save**, and return to Vercel.
+6. On the **Configure Project** screen:
+   1. **Project Name:** `hifazat`
+   2. **Framework Preset:** it should say **Next.js** automatically.
+   3. **Root Directory:** click **Edit**, choose the folder **`apps/web`**, and
+      click **Continue**. *(Important: this is where the web app lives.)*
+   4. If you see the option **"Include files outside the root directory in the
+      Build Step"**, make sure it is **on** (our translation files live outside
+      `apps/web`). It is on by default.
+   5. Open **Environment Variables**. If your Supabase project is ready, add:
+      | Key | Value |
+      |---|---|
+      | `NEXT_PUBLIC_SUPABASE_URL` | your Supabase **Project URL** |
+      | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | your Supabase **anon / publishable** key |
+
+      If Supabase is not ready yet, skip this; the app does not use Supabase until
+      Phase 2, and you can add them later under **Settings → Environment
+      Variables**. **Never add the service_role / secret key here.**
+7. Click **Deploy**. Wait 1–3 minutes until you see **Congratulations!**
+8. Click **Continue to Dashboard**, then click the link under **Domains** (it
+   looks like `hifazat-xxxx.vercel.app`). That's your Hifazat test site.
+9. Send me the link, or tell me "Vercel connected".
+
+### After that: how you get links for every change
+
+- Every time I push, Vercel builds a new version automatically (1–3 minutes).
+- In Vercel, open the **hifazat** project → **Deployments**. The top row is the
+  newest version. Click it, then **Visit**.
+- **Preview links are private by default.** Links for individual versions ask
+  you to log in to Vercel. To show a tester, open the deployment and use
+  **Share** to create a shareable link. The main `…vercel.app` address is
+  public.
+- The site shows a yellow **"Test version"** banner and asks search engines not
+  to list it, until launch.
+
+### A note on the free plan
+
+Vercel's free **Hobby** plan is meant for non-commercial use. That is fine for
+testing. **Before the public launch**, check whether Hifazat's organization
+needs the **Pro** plan (about US$20/month). This is on the pre-launch checklist.
+
+---
+
+## Part B — Supabase project (about 15 minutes, if not done yet)
+
+We start using Supabase in Phase 2. Region: **Singapore** (approved).
 
 1. Go to <https://supabase.com> and click **Start your project**.
 2. Sign up (using GitHub is easiest). Use an email the organization controls
-   long-term, not a personal one if possible.
-3. Create an **organization** when asked. Name: `Hifazat`. Plan: **Free**.
+   long-term.
+3. Create an **organization** named `Hifazat`, plan **Free**.
 4. Click **New project**:
    1. Name: `hifazat`
-   2. **Database password:** click **Generate a password**, then **save it in a
-      password manager** (for example Bitwarden, which is free). Do not send it
-      to me.
-   3. **Region:** choose **South Asia (Mumbai)** if available, otherwise
-      **Southeast Asia (Singapore)**.
+   2. **Database password:** click **Generate a password** and **save it in a
+      password manager** (for example Bitwarden, free). Don't send it to me.
+   3. **Region:** **Southeast Asia (Singapore)**.
    4. Click **Create new project** and wait a couple of minutes.
-5. Find your **public** connection details:
-   1. Click **Project Settings** (gear icon) → **API** (it may be called
-      **API Keys** / **Data API**).
-   2. Note the **Project URL** (looks like `https://abcd1234.supabase.co`).
-   3. Note the **anon / publishable** key. This key is designed to be inside
-      apps; the database security rules protect the data.
-   4. **Do NOT copy the `service_role` / `secret` key anywhere.** It bypasses
-      all security rules.
-6. Store them on your computer:
-   1. In VS Code, in the Hifazat folder, find the file `.env.example`.
-   2. Make a copy of it named exactly `.env` (right-click → Copy, then Paste,
-      then rename).
-   3. Put your Project URL and anon/publishable key into `.env` and save.
-   4. `.env` is ignored by Git, so it will never be uploaded.
-7. Tell me **"Supabase project created"** and which region you chose. You can
-   send me the **Project URL** (it's not secret). You don't need to send the key.
+5. Find the **public** connection details:
+   1. Click **Project Settings** (gear icon) → **API** / **API Keys** / **Data API**.
+   2. Copy the **Project URL** (looks like `https://abcd1234.supabase.co`).
+   3. Copy the **anon / publishable** key. This key is designed to be public;
+      the database security rules protect the data.
+   4. **Do NOT copy the `service_role` / `secret` key anywhere.**
+6. Put both values into Vercel (Part A, step 6.5, or later under **Settings →
+   Environment Variables**), then in **Deployments** click **⋯ → Redeploy** on
+   the newest one so it picks them up.
+7. Tell me **"Supabase project created"**. You can send me the Project URL
+   (it's not secret).
 
 ---
 
-## Part C — Later (not now)
+## Testing on your phone
 
-- **Phase 6:** create an Anthropic account and API key for the AI assistant.
-  I'll give you steps; the key goes into Supabase's secret storage, never into
-  the app.
-- **Phase 9:** create an Android signing key and a Google Play developer
-  account.
+1. Open the Vercel link in **Chrome** on your Android phone.
+2. Try: the five home buttons, **Back**, the language switch (English ↔ اردو),
+   **Quick Exit**, and the **"Staying safe online"** link at the bottom.
+3. **Install it:** Chrome menu (⋮) → **Add to Home screen** / **Install app**.
+4. **Offline test:** after opening the site once, turn on **Airplane mode** and
+   open Hifazat from the home screen. The home page, "I'm in Danger" page and
+   "Staying safe online" page should still open.
+
+---
+
+## Later (not now)
+
+- **Phase 6:** Anthropic account + API key for the AI assistant. The key goes
+  into Supabase's secret storage, never into the web app or Vercel.
+- **Flutter app (later):** installing Flutter on a computer, and a Google Play
+  developer account.

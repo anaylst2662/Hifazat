@@ -35,6 +35,8 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     title: getDictionary(lang).appName,
     manifest: `/manifest-${lang}.webmanifest`,
     referrer: "no-referrer",
+    // Test versions are hidden from search engines until launch.
+    robots: showPreviewBanner ? { index: false, follow: false } : undefined,
     icons: { icon: "/icons/icon-192.png", apple: "/icons/apple-touch-icon.png" },
     appleWebApp: { capable: true, title: getDictionary(lang).appName, statusBarStyle: "default" },
   };

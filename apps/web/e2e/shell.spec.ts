@@ -151,3 +151,8 @@ test.describe("Offline", () => {
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   });
 });
+
+test("the test version asks search engines not to list it", async ({ page }) => {
+  await page.goto("/en");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+});
