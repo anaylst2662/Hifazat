@@ -10,6 +10,9 @@ const reference = load("en.json");
 let problems = 0;
 for (const file of readdirSync(dir).filter((f) => f.endsWith(".json") && f !== "en.json")) {
   const other = load(file);
+  if (String(other["@@status"] ?? "").startsWith("DRAFT")) {
+    console.warn(`Reminder: ${file} is marked DRAFT and needs native-speaker review before launch.`);
+  }
   for (const key of Object.keys(reference)) {
     if (key.startsWith("@")) continue;
     if (!(key in other)) { console.error(`${file}: missing "${key}"`); problems++; }

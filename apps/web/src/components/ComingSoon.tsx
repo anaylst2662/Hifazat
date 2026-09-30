@@ -1,19 +1,20 @@
 import { Hammer } from "lucide-react";
 import { format, type Dictionary } from "@/i18n/dictionaries";
+import { Card } from "./ui/Card";
+import { IconBadge } from "./ui/IconBadge";
 
-type Props = { dict: Dictionary; phase: number; children?: React.ReactNode };
+type Props = { dict: Dictionary; phase: number };
 
-/** Placeholder for sections that are built in later phases. */
-export function ComingSoon({ dict, phase, children }: Props) {
+/** Placeholder for sections built in later phases. */
+export function ComingSoon({ dict, phase }: Props) {
   return (
-    <div className="rounded-2xl border-2 border-dashed border-line bg-card p-6">
-      <p className="flex items-center gap-3 text-xl font-bold">
-        <Hammer aria-hidden="true" className="size-6 shrink-0 text-ink-soft" />
-        {dict.comingSoonTitle}
-      </p>
-      <p className="mt-2 text-ink-soft">{dict.comingSoonBody}</p>
-      <p className="mt-1 text-ink-soft">{format(dict.comingSoonPhase, { phase })}</p>
-      {children}
-    </div>
+    <Card className="flex gap-4">
+      <IconBadge icon={Hammer} tone="brand" />
+      <div>
+        <p className="text-lg font-semibold text-ink">{dict.comingSoonTitle}</p>
+        <p className="mt-1 text-ink-soft">{dict.comingSoonBody}</p>
+        <p className="mt-1 text-sm font-medium text-ink-soft">{format(dict.comingSoonPhase, { phase })}</p>
+      </div>
+    </Card>
   );
 }

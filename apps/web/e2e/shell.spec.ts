@@ -37,10 +37,22 @@ test.describe("Home screen", () => {
 
 test.describe("Start address with an Urdu phone", () => {
   test.use({ locale: "ur-PK" });
-  test("picks Urdu", async ({ page }) => {
+  test("still opens in English (the phone's language is not used)", async ({ page }) => {
     await page.goto("/");
-    await expect(page).toHaveURL(/\/ur$/);
+    await expect(page).toHaveURL(/\/en$/);
   });
+});
+
+test("choosing Urdu is remembered for the next visit", async ({ page }) => {
+  await page.goto("/en");
+  await page.getByTestId("language-switcher").click();
+  await expect(page).toHaveURL(/\/ur$/);
+  await page.goto("/");
+  await expect(page).toHaveURL(/\/ur$/);
+  await page.getByTestId("language-switcher").click();
+  await expect(page).toHaveURL(/\/en$/);
+  await page.goto("/");
+  await expect(page).toHaveURL(/\/en$/);
 });
 
 test.describe("Privacy of addresses and tab titles", () => {
@@ -126,14 +138,14 @@ test.describe("Offline", () => {
     await expect
       .poll(() =>
         page.evaluate(async () => {
-          const cache = await caches.open("hifazat-pages-v1");
+          const cache = await caches.open("hifazat-pages-v2");
           return (await cache.keys()).length;
         }),
       )
       .toBeGreaterThanOrEqual(6);
 
     const saved = await page.evaluate(async () => {
-      const cache = await caches.open("hifazat-pages-v1");
+      const cache = await caches.open("hifazat-pages-v2");
       return (await cache.keys()).map((r) => new URL(r.url).pathname);
     });
     for (const path of saved.filter((p) => !p.startsWith("/__hifazat"))) {

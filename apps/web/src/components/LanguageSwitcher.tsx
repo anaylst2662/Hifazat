@@ -1,22 +1,23 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Languages } from "lucide-react";
 import { LANGUAGE_STORAGE_KEY, type Locale } from "@/i18n/config";
+import { buttonClass } from "./ui/styles";
 
 type Props = { target: Locale; label: string; ariaLabel: string };
 
-/** Switches to the same page in the other language. */
-export function LanguageSwitch({ target, label, ariaLabel }: Props) {
+/** Shows "اردو" in English and "English" in Urdu; remembers the choice in this browser. */
+export function LanguageSwitcher({ target, label, ariaLabel }: Props) {
   const pathname = usePathname();
   const href = pathname.replace(/^\/[a-z]{2}(?=\/|$)/, `/${target}`);
   return (
-    // A normal link (full page load) so the page direction and font switch cleanly.
+    // A normal link (full page load) so text direction and fonts switch cleanly.
     <a
       href={href}
       hrefLang={target}
       lang={target}
       aria-label={ariaLabel}
+      data-testid="language-switcher"
       onClick={() => {
         try {
           localStorage.setItem(LANGUAGE_STORAGE_KEY, target);
@@ -24,10 +25,9 @@ export function LanguageSwitch({ target, label, ariaLabel }: Props) {
           // Storage may be blocked (private mode); the switch still works.
         }
       }}
-      className="inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-full border-2 border-line bg-card px-3 py-2 font-semibold text-ink hover:border-brand"
+      className={buttonClass("onBrand", `px-4 ${target === "ur" ? "font-urdu text-[15px] font-normal" : "font-sans"}`)}
     >
-      <Languages aria-hidden="true" className="hidden size-5 sm:block" />
-      <span>{label}</span>
+      {label}
     </a>
   );
 }

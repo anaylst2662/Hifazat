@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
-import { BookOpen, FileText, HeartHandshake, LifeBuoy, Siren } from "lucide-react";
+import { BookOpen, FileText, HeartHandshake, LifeBuoy } from "lucide-react";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { HomeAction } from "@/components/HomeAction";
+import { DangerCard } from "@/components/DangerCard";
+import { ActionTile } from "@/components/ActionTile";
 
 export default async function HomePage({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -10,55 +11,32 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
   const dict = getDictionary(lang);
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-1">
-        <p className="font-semibold text-brand">{dict.tagline}</p>
-        <h1 className="text-3xl font-bold leading-snug rtl:leading-[2]">{dict.homeTitle}</h1>
+    <>
+      <div className="bg-brand pb-16 text-white">
+        <div className="mx-auto max-w-2xl px-4 pt-3">
+          <p className="text-[0.9375rem] text-white/80">{dict.tagline}</p>
+          <h1 className="mt-1 text-[1.75rem] font-bold leading-tight tracking-tight rtl:leading-[1.9]">
+            {dict.homeTitle}
+          </h1>
+        </div>
       </div>
 
-      <nav aria-label={dict.homeTitle} className="grid gap-4">
-        {/* Neutral web addresses: none of them name the situation. */}
-        <HomeAction
-          large
-          href={`/${lang}/now`}
-          label={dict.homeDangerLabel}
-          hint={dict.homeDangerHint}
-          icon={Siren}
-          className="bg-danger text-white"
-        />
-        <div className="grid gap-4 sm:grid-cols-2">
-          <HomeAction
-            href={`/${lang}/learn`}
-            label={dict.homeLearnLabel}
-            hint={dict.homeLearnHint}
-            icon={BookOpen}
-            className="bg-learn text-white"
-          />
-          <HomeAction
-            href={`/${lang}/services`}
-            label={dict.homeHelpLabel}
-            hint={dict.homeHelpHint}
-            icon={LifeBuoy}
-            className="bg-help text-white"
-          />
-          <HomeAction
-            href={`/${lang}/form`}
-            label={dict.homeReportLabel}
-            hint={dict.homeReportHint}
-            icon={FileText}
-            className="bg-report text-report-ink"
-          />
-          <HomeAction
+      {/* Neutral web addresses: none of them name the situation. */}
+      <nav aria-label={dict.homeTitle} className="mx-auto -mt-12 max-w-2xl space-y-3 px-4 pb-8">
+        <DangerCard href={`/${lang}/now`} label={dict.homeDangerLabel} hint={dict.homeDangerHint} />
+        <div className="grid grid-cols-2 gap-3">
+          <ActionTile href={`/${lang}/learn`} label={dict.homeLearnLabel} hint={dict.homeLearnHint} icon={BookOpen} tone="learn" />
+          <ActionTile href={`/${lang}/services`} label={dict.homeHelpLabel} hint={dict.homeHelpHint} icon={LifeBuoy} tone="help" />
+          <ActionTile href={`/${lang}/form`} label={dict.homeReportLabel} hint={dict.homeReportHint} icon={FileText} tone="report" />
+          <ActionTile
             href={`/${lang}/guide`}
             label={dict.homeSupportingLabel}
             hint={dict.homeSupportingHint}
             icon={HeartHandshake}
-            className="bg-support text-white"
+            tone="support"
           />
         </div>
       </nav>
-
-      <p className="text-center text-ink-soft">{dict.pillars}</p>
-    </div>
+    </>
   );
 }

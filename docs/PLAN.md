@@ -57,7 +57,7 @@ directly.
 | **PWA** with a hand-written offline helper (`apps/web/public/sw.js`) | About 150 lines we fully understand; explicitly never saves staff pages |
 | **Shared translations** in `shared/i18n/*.json` | One file per language, flat keys, readable by both the web app and Flutter |
 | Icons: `lucide-react` | Only the icons we use are sent to the phone |
-| Tests: **Playwright** browser tests | Automatically checks Quick Exit, Back, Urdu right-to-left layout, offline mode |
+| Tests: **Playwright** browser tests + **axe** accessibility scan | Automatically checks Quick Exit, Back, Urdu right-to-left layout, offline mode, contrast, tap sizes |
 
 ### Earlier decisions: still approved, adapted to the web
 
@@ -76,6 +76,17 @@ directly.
 6. **No push notifications, analytics or crash-reporting services** in the MVP.
 
 ---
+
+## 2b. Design system (direction C, "Modern Trust")
+
+| Part | Where | Rule |
+|---|---|---|
+| Colors | `apps/web/src/app/globals.css` (`--color-*` tokens) | Navy brand, light grey page, white cards; softened pillar colors (Learn green, Find Help blue, Report amber, Supporting violet); **red only for danger/emergency** |
+| Fonts | `[lang]/layout.tsx` | Plus Jakarta Sans for English; Noto Nastaliq Urdu (extra line height) only on Urdu pages |
+| Parts | `apps/web/src/components/` and `components/ui/` | Pages are built only from these: header, footer, page layout, buttons, cards, icon badges, notices, Quick Exit, language switcher |
+| Icons | Lucide only | No emojis in the interface |
+| Accessibility | `e2e/design.spec.ts` | WCAG AA contrast, 48px tap targets, focus outlines, screen-reader labels; checked automatically |
+| Motion | `ui/styles.ts` (`pressable`) | Subtle 150 ms press feedback; off when the phone asks for reduced motion |
 
 ## 3. How the code is organized
 
@@ -114,6 +125,10 @@ Hifazat/
 
 Choices made inside a page (like a report type) are never put in the address.
 Every public page shows only "Hifazat" in the browser tab.
+
+**Language:** English is the default for every new visitor. Urdu is used only
+when the visitor picks it with the header switch; the choice is remembered in
+that browser. The phone's language is not used.
 
 ---
 

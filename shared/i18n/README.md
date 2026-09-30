@@ -12,7 +12,8 @@ Rules:
 - Placeholders use `{name}` (ICU style), e.g. `"Planned for Phase {phase}."`
 - Every language file must have exactly the same keys. `npm run check:i18n`
   (in `apps/web`) checks this.
-- **Urdu text is a first draft and must be reviewed by a native speaker before
-  launch.** We avoid gendered verb forms (e.g. چاہتا / چاہتی) where possible.
+- **Urdu text is a DRAFT** (`"@@status"` at the top of `ur.json`) and must be
+  reviewed by native speakers before launch. Remove the DRAFT status only after
+  that review. We avoid gendered verb forms (e.g. چاہتا / چاہتی) where possible.
 - To add Shina or Burushaski later: copy `en.json`, translate, and register the
   new language code in the apps.

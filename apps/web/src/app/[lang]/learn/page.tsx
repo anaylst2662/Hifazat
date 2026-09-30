@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { BookOpen } from "lucide-react";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { SectionPage } from "@/components/SectionPage";
+import { PageLayout } from "@/components/PageLayout";
 import { ComingSoon } from "@/components/ComingSoon";
 
 export default async function Page({ params }: PageProps<"/[lang]/learn">) {
@@ -10,8 +10,8 @@ export default async function Page({ params }: PageProps<"/[lang]/learn">) {
   if (!isLocale(lang)) notFound();
   const dict = getDictionary(lang);
   return (
-    <SectionPage lang={lang} dict={dict} title={dict.homeLearnLabel} icon={BookOpen} iconClassName="bg-learn text-white">
+    <PageLayout lang={lang} dict={dict} title={dict.homeLearnLabel} icon={BookOpen} tone="learn">
       <ComingSoon dict={dict} phase={3} />
-    </SectionPage>
+    </PageLayout>
   );
 }

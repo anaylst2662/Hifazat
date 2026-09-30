@@ -1,33 +1,46 @@
 @import "tailwindcss";
 
 /*
- * Hifazat design system.
- * Calm, gentle colors with strong text contrast (WCAG AA or better).
+ * Hifazat design system: direction C, "Modern Trust".
  * Every color is a named token so it can be changed in one place.
+ * All text/background pairs meet WCAG AA (checked by e2e/design.spec.ts).
  */
 @theme {
-  /* Brand and surfaces */
-  --color-brand: #0f5c4d;
-  --color-brand-soft: #e3efeb;
-  --color-surface: #f7f5f0;
-  --color-card: #ffffff;
-  --color-ink: #1d2a26;
-  --color-ink-soft: #4a5a55;
-  --color-line: #d9d4c9;
+  /* Brand and neutrals */
+  --color-brand: #14325a; /* deep navy: header, primary buttons */
+  --color-brand-soft: #e6edf7; /* light navy tint: notices, badges */
+  --color-bg: #f3f5f9; /* page background */
+  --color-surface: #ffffff; /* cards */
+  --color-ink: #101b2d; /* main text */
+  --color-ink-soft: #4f5d75; /* secondary text */
+  --color-line: #dfe5ee; /* borders */
 
-  /* The five home actions (text on each is white, except "report": dark text) */
-  --color-danger: #b3261e;
-  --color-learn: #1f6f46;
-  --color-help: #a84d00;
-  --color-report: #f2c230;
-  --color-report-ink: #3a2c00;
-  --color-support: #1f5fa8;
+  /* Danger: ONLY for "I'm in Danger" and emergency actions */
+  --color-danger: #c62828;
+  --color-danger-soft: #fdecec;
 
-  /* Quick Exit: always the same, always recognisable */
-  --color-exit: #222b33;
+  /* Pillar colors (softened): tint background + strong icon color */
+  --color-learn: #1a6e4c;
+  --color-learn-soft: #e3f4ec;
+  --color-help: #1d57a3;
+  --color-help-soft: #e5edfa;
+  --color-report: #865a00;
+  --color-report-soft: #fff3d6;
+  --color-support: #5e46a8;
+  --color-support-soft: #eee9fb;
 
-  /* System fonts load instantly (nothing to download on slow connections). */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
+  /* Test-version banner */
+  --color-banner: #fff3d6;
+  --color-banner-ink: #5c3d00;
+
+  /* Shape and depth */
+  --radius-card: 1rem;
+  --shadow-card: 0 1px 2px rgb(16 27 45 / 0.04), 0 2px 8px rgb(16 27 45 / 0.04);
+  --shadow-raised: 0 8px 24px rgb(16 27 45 / 0.08);
+  --shadow-danger: 0 8px 22px rgb(160 30 30 / 0.25);
+
+  /* Fonts: Plus Jakarta Sans (self-hosted); Noto Nastaliq Urdu only on Urdu pages */
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-urdu: var(--font-nastaliq), "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif;
 }
 
@@ -35,19 +48,20 @@ html {
   /* Respect the phone's text-size setting; everything is sized in rem. */
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background: var(--color-surface);
+  background: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Urdu: Nastaliq script needs extra line height to stay readable. */
+/* Urdu: Nastaliq script needs much taller lines to stay readable. */
 html[lang="ur"] {
-  /* Every text size gets taller lines in Urdu. */
   --text-xs--line-height: 2;
   --text-sm--line-height: 2;
   --text-base--line-height: 2.1;
@@ -56,20 +70,22 @@ html[lang="ur"] {
   --text-2xl--line-height: 2;
   --text-3xl--line-height: 2;
 }
-
 html[lang="ur"] body {
   font-family: var(--font-urdu);
   line-height: 2.1;
 }
 
-/* Clear, thick focus outline for keyboard and switch-access users. */
+/* Clear focus outline for keyboard and switch-access users. */
 :focus-visible {
-  outline: 3px solid var(--color-brand);
+  outline: 3px solid var(--color-help);
   outline-offset: 3px;
+  border-radius: 0.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;

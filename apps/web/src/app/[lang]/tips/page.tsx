@@ -2,7 +2,10 @@ import { notFound } from "next/navigation";
 import { EyeOff, History, LockKeyhole, LogOut, Smartphone, Users, type LucideIcon } from "lucide-react";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { SectionPage } from "@/components/SectionPage";
+import { PageLayout } from "@/components/PageLayout";
+import { Card } from "@/components/ui/Card";
+import { IconBadge } from "@/components/ui/IconBadge";
+import { Notice } from "@/components/ui/Notice";
 
 // "Staying safe online": browser history, shared devices, private mode.
 export default async function TipsPage({ params }: PageProps<"/[lang]/tips">) {
@@ -19,20 +22,22 @@ export default async function TipsPage({ params }: PageProps<"/[lang]/tips">) {
   ];
 
   return (
-    <SectionPage lang={lang} dict={dict} title={dict.tipsTitle} icon={LockKeyhole} iconClassName="bg-brand text-white">
-      <p className="text-lg">{dict.tipsIntro}</p>
-      <ul className="space-y-4">
-        {tips.map(({ icon: Icon, title, body }) => (
-          <li key={title} className="rounded-2xl bg-card p-5 shadow-sm">
-            <h2 className="flex items-center gap-3 text-xl font-bold">
-              <Icon aria-hidden="true" className="size-6 shrink-0 text-brand" />
-              {title}
-            </h2>
-            <p className="mt-2 text-ink-soft">{body}</p>
-          </li>
+    <PageLayout lang={lang} dict={dict} title={dict.tipsTitle} icon={LockKeyhole} tone="brand">
+      <Card>
+        <p className="text-ink">{dict.tipsIntro}</p>
+      </Card>
+      <ul className="space-y-3">
+        {tips.map(({ icon, title, body }) => (
+          <Card as="li" key={title} className="flex gap-4">
+            <IconBadge icon={icon} tone="brand" />
+            <div>
+              <h2 className="text-lg font-semibold text-ink">{title}</h2>
+              <p className="mt-1 text-ink-soft">{body}</p>
+            </div>
+          </Card>
         ))}
       </ul>
-      <p className="rounded-2xl bg-brand-soft p-5 font-semibold">{dict.tipsOutro}</p>
-    </SectionPage>
+      <Notice>{dict.tipsOutro}</Notice>
+    </PageLayout>
   );
 }

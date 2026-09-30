@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
-import { X } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { QUICK_EXIT_ESC_PRESSES, QUICK_EXIT_ESC_WINDOW_MS } from "@/lib/config";
 import { quickExit } from "@/lib/quick-exit";
+import { buttonClass } from "./ui/styles";
 
 type Props = { label: string; ariaLabel: string };
 
-/** The Quick Exit button, plus the "press Esc 3 times" keyboard shortcut. */
-export function QuickExit({ label, ariaLabel }: Props) {
+/** Quick Exit: a clear white button in the header, plus "press Esc 3 times". */
+export function QuickExitButton({ label, ariaLabel }: Props) {
   useEffect(() => {
     let presses: number[] = [];
     function onKeyDown(event: KeyboardEvent) {
@@ -27,9 +28,9 @@ export function QuickExit({ label, ariaLabel }: Props) {
       onClick={quickExit}
       aria-label={ariaLabel}
       data-testid="quick-exit"
-      className="inline-flex min-h-12 items-center gap-2 rounded-full bg-exit whitespace-nowrap px-4 py-2 text-base font-bold text-white shadow-md hover:bg-black"
+      className={buttonClass("onBrandSolid", "px-4")}
     >
-      <X aria-hidden="true" className="size-5" strokeWidth={3} />
+      <LogOut aria-hidden="true" className="size-[18px] rtl:-scale-x-100" strokeWidth={2.25} />
       <span>{label}</span>
     </button>
   );

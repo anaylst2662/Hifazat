@@ -13,7 +13,7 @@
  * Phase 2 will add: emergency numbers and the safety plan.
  */
 
-const VERSION = "v1";
+const VERSION = "v2";
 const STATIC_CACHE = `hifazat-static-${VERSION}`;
 const PAGES_CACHE = `hifazat-pages-${VERSION}`;
 
