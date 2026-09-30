@@ -59,7 +59,7 @@ test.describe("Privacy of addresses and tab titles", () => {
   test("every page has a neutral tab title and web address", async ({ page }) => {
     await page.goto("/en");
     const hrefs = await page.locator("main nav a").evaluateAll((links) => links.map((a) => a.getAttribute("href")));
-    expect(hrefs).toEqual(["/en/now", "/en/learn", "/en/services", "/en/form", "/en/guide"]);
+    expect(hrefs).toEqual(["/en/now", "/en/learn", "/en/services", "/en/form", "/en/guide", "/en/plan"]);
     for (const href of [...(hrefs as string[]), "/en/tips", "/ur", "/ur/now"]) {
       expect(href).not.toMatch(/danger|report|assault|abuse|violence|harass/i);
       await page.goto(href);
@@ -138,14 +138,14 @@ test.describe("Offline", () => {
     await expect
       .poll(() =>
         page.evaluate(async () => {
-          const cache = await caches.open("hifazat-pages-v2");
+          const cache = await caches.open("hifazat-pages-v3");
           return (await cache.keys()).length;
         }),
       )
-      .toBeGreaterThanOrEqual(6);
+      .toBeGreaterThanOrEqual(8);
 
     const saved = await page.evaluate(async () => {
-      const cache = await caches.open("hifazat-pages-v2");
+      const cache = await caches.open("hifazat-pages-v3");
       return (await cache.keys()).map((r) => new URL(r.url).pathname);
     });
     for (const path of saved.filter((p) => !p.startsWith("/__hifazat"))) {

@@ -10,15 +10,17 @@
  *  - Staff / admin pages (/staff), server calls (/api, /auth), or anything
  *    from other websites (including Supabase). Those always go to the network.
  *
- * Phase 2 will add: emergency numbers and the safety plan.
+ * The "I'm in Danger" page (with emergency numbers) and the safety plan page
+ * are core pages. The safety plan's contents live encrypted in the browser
+ * (IndexedDB), never in this cache.
  */
 
-const VERSION = "v2";
+const VERSION = "v3";
 const STATIC_CACHE = `hifazat-static-${VERSION}`;
 const PAGES_CACHE = `hifazat-pages-${VERSION}`;
 
 // Pages saved as soon as the helper is installed (both languages).
-const CORE_PAGES = ["/en", "/ur", "/en/now", "/ur/now", "/en/tips", "/ur/tips"];
+const CORE_PAGES = ["/en", "/ur", "/en/now", "/ur/now", "/en/plan", "/ur/plan", "/en/tips", "/ur/tips"];
 
 // Only these pages may ever be saved: the public site in a supported language.
 const PUBLIC_PAGE = /^\/(en|ur)(\/|$)/;

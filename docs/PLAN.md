@@ -115,7 +115,8 @@ Hifazat/
 | Section | Address | Phase |
 |---|---|---|
 | Home | `/en`, `/ur` | 1 ✅ |
-| I'm in Danger | `/en/now` | 2 |
+| I'm in Danger | `/en/now` | 2 ✅ |
+| My Safety Plan | `/en/plan` | 2 ✅ |
 | Learn & Stay Safe | `/en/learn` | 3 |
 | I Need Help | `/en/services` | 4 |
 | I Want to Report | `/en/form` | 5 |

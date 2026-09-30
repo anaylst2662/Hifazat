@@ -71,11 +71,13 @@ for (const path of pages) {
 }
 
 test("every button and link is at least 48px tall (easy to tap)", async ({ page }) => {
-  for (const path of ["/en", "/ur", "/en/tips"]) {
+  for (const path of ["/en", "/ur", "/en/tips", "/en/now", "/en/plan"]) {
     await page.goto(path);
-    const small = await page.locator("header a, header button, main a, main button, footer a").evaluateAll((els) =>
+    if (path.endsWith("/plan")) await page.getByTestId("plan-trusted").waitFor();
+    const small = await page.locator("header a, header button, main a, main button, footer a, main input, main select").evaluateAll((els) =>
       els
         .filter((el) => el.getBoundingClientRect().height > 0)
+        .filter((el) => !(el instanceof HTMLInputElement && (el.type === "checkbox" || el.type === "radio")))
         .filter((el) => el.getBoundingClientRect().height < 47.5)
         .map((el) => `${el.textContent?.trim()} (${Math.round(el.getBoundingClientRect().height)}px)`),
     );

@@ -37,3 +37,10 @@ export const toneClass: Record<Tone, string> = {
   report: "bg-report-soft text-report",
   support: "bg-support-soft text-support",
 };
+
+/** Text inputs, selects and text areas. */
+export const inputClass =
+  "block min-h-12 w-full rounded-xl border border-line bg-surface px-4 py-2 text-base text-ink placeholder:text-ink-soft/80 focus-visible:border-help";
+
+/** Small uppercase-free section label above a group of items. */
+export const sectionTitleClass = "text-lg font-semibold text-ink";

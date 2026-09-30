@@ -96,6 +96,40 @@ We start using Supabase in Phase 2. Region: **Singapore** (approved).
 
 ---
 
+## Part C — Add the Phase 2 tables to Supabase (about 5 minutes)
+
+The "I'm in Danger" page reads its phone numbers from your Supabase database.
+You add the tables once by copying two files into Supabase's SQL editor.
+
+1. Open your project at <https://supabase.com/dashboard> and click **SQL Editor**
+   in the left menu.
+2. Click **New query** (or the **+** button).
+3. In another tab, open the file on GitHub:
+   `supabase/migrations/20260930120000_protect_contact_numbers.sql`
+   (branch `claude/blissful-shannon-aep047`). Click the **Copy raw file** button
+   (two overlapping squares, top right of the file).
+4. Paste it into the SQL editor and click **Run** (or press Ctrl + Enter).
+   You should see **"Success. No rows returned"**.
+5. Click **New query** again. Copy the file `supabase/seed.sql` the same way,
+   paste it, and click **Run**. This adds the **PLACEHOLDER** test numbers
+   (fake `000-000-…` numbers that cannot reach anyone).
+6. Check: click **Table Editor** in the left menu → `contact_numbers`. You should
+   see 8 rows whose names start with **PLACEHOLDER**.
+7. Make sure Vercel has your Supabase settings (Part A, step 6.5):
+   `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+8. In Vercel → **Deployments** → newest row → **⋯** → **Redeploy**.
+   After 1–3 minutes, "I'm in Danger" shows the test numbers with a
+   **"TEST NUMBER"** label.
+
+> Run each file **only once**. If you see an error such as "already exists",
+> the step was already done; tell me and I'll check.
+>
+> **Real numbers:** don't type real numbers into the table yet. In Phase 7 you
+> get an admin screen where a named person verifies each number (the database
+> refuses a real number without `verified_by` and `verified_at`).
+
+---
+
 ## Testing on your phone
 
 1. Open the Vercel link in **Chrome** on your Android phone.
@@ -103,8 +137,9 @@ We start using Supabase in Phase 2. Region: **Singapore** (approved).
    **Quick Exit**, and the **"Staying safe online"** link at the bottom.
 3. **Install it:** Chrome menu (⋮) → **Add to Home screen** / **Install app**.
 4. **Offline test:** after opening the site once, turn on **Airplane mode** and
-   open Hifazat from the home screen. The home page, "I'm in Danger" page and
-   "Staying safe online" page should still open.
+   open Hifazat from the home screen. The home page, "I'm in Danger" (with its
+   numbers), "My Safety Plan" (with what you saved) and "Staying safe online"
+   should still open.
 
 ---
 
